@@ -1,5 +1,5 @@
 # CyberTalents
- Cybertalents challenges write-ups
+ Cybertalents web security challenges write-ups
  Web-Security: 
  
  Challenge name: Join Team
