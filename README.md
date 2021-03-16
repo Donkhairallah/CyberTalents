@@ -13,7 +13,7 @@
         echo 'test'
         ?>
         Using the BurpSuite we were able to manipulate the file type, So i changed the filename from .pdf to .php and in the content-type to "application/pdf" and forwarded it
-        In BurpSuite in the proxy section go to HTTP history and press on the last request we forwarded it we can see in the Response part we can see that there is a location code "<a href="data/filename.pdf">...
+        In BurpSuite in the proxy section go to HTTP history and press on the last request we forwarded it we can see in the Response part we can see that there is a location code "<a href="data/filename.pdf">"...
         By changing the URL from 18.192.3.151/join-team/index.php?jobs to 18.192.3.151/join-team/index.php?data/filename.pdf we get a string "test" wich means we are able to execute PHP code through the pdf file sent.
         Lets create a Backdoor to be able to get a connection between the web server side and our side.
         Here i suggest using weevely to use a written php backdoor by writing  in the terminal "weevely generate pass /home/kali/Desktop/backdoor.php" to generate a backdoor file. PS:I don't recommend using backoor as a name, maybe there is policies that stops suspicious words.
