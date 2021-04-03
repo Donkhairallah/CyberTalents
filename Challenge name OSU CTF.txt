@@ -1,0 +1,22 @@
+HackerOneCTF 
+
+Challenge name: OSU CTF
+
+
+In the Challenge  we know that there is a person named Natasha Drew want to attend a camp,
+but the problem is that here grades aren't good enough
+which means we need to hack into the system and change her grades to be able to attend this camp.
+The URL will redirect us to a login page. First i used Dirb to see if there is sub-directory we can access it but nothing special.
+Then we open BurpSuite to intercept and modify the request sent to the server.
+In the login page, firt thing to start with is the SQL injection to see if we can get a successful attack. In the username type admin' OR '1'='1' ;--
+We get redirected to another page where we can see the student's grades and the user we logged in is rhonda.daniels
+In the elements we can see an important command which is var staf={} which define the user logged in and their role and we can see that the admin name is rhonda daniels
+which menas we have admin priviledges. Second thing we get is the data-id which is base64 cryptography and its unique for every student by decoding some id we get the student firstname_lastname.
+lets get natasha id by encoding natasha_drew and save it for later on.
+The third and important part is that there is a script and we can reach it from /assets/js/app.min.js in there we can clearly read the script.
+We can see two functions Setup links and submit form. The first function is to check if the user is admin.
+Then we can see how the URL is modified to redirect us to the edit page.
+This function add to the URL '/update-'+ objectname+ '/' + this.dataset.id.
+The objectname is student and this.dataset.id is the base64 format, for example Brett,Nancie is TmDuYll0JyZXR0.
+We add to the URL /update-student/TmDuYll0JyZXR0. Now we can update nancy's grades.
+Now lets take the base64 format for natasha drew and replace nancy's ID in the URL now we can modify natasha's grade and we get the FLAG!  
